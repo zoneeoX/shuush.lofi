@@ -1,17 +1,14 @@
 import ReactPlayer from "react-player";
 import { useState, useCallback } from "react";
-import { BsPlayFill, BsPauseFill } from "react-icons/bs";
-
+import Overlay from "./assets/lofi_overlay/overlay.gif";
 import lofiBackground from "./assets/images/yes.png";
+import LofiThree from "./assets/lofi_images/LofiThree.gif";
 import NavBottom from "./components/NavBottom";
 import Modal from "./components/Modal";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function App() {
-  //* use playing param to determine whether the player is paused or not using a seperate button with a function
-  //* use volume to adjust volume of the player it can be adjusted by a custom made input range
-  //* randomise wallpaper when lofiInfo is updated
-  //* custom user input put in localstorage
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [playerVolume, setPlayerVolume] = useState(0.5);
   const [isModal, setIsModal] = useState(false);
@@ -29,28 +26,34 @@ function App() {
     setIsModal((prevState) => !prevState);
   });
 
-
   return (
     <>
-      {isModal ? (
-        <Modal setLofiInfo={setLofiInfo} setIsModal={setIsModal} />
-      ) : (
-        ""
-      )}
+      <AnimatePresence>
+        {isModal ? (
+          <Modal setLofiInfo={setLofiInfo} setIsModal={setIsModal} />
+        ) : (
+          ""
+        )}
+      </AnimatePresence>
       <div className="w-screen h-screen flex justify-center items-center">
         <img
-          src={lofiBackground}
+          src={lofiInfo.lofi_image || LofiThree}
           alt="background for lofi"
           className="w-screen h-screen absolute object-cover object-center brightness-50"
           onClick={handleStart}
+        />
+        <img
+          src={Overlay}
+          className="w-screen h-screen object-bottom object-cover z-40 opacity-30"
         />
 
         <div className="-z-50 invisible absolute">
           <ReactPlayer
             url={
               lofiInfo?.youtube_url ||
-              "https://www.youtube.com/watch?v=-9gEgshJUuY"
+              "https://www.youtube.com/watch?v=jfKfPfyJRdk"
             }
+            loop={true}
             playing={isPlaying}
             volume={playerVolume}
             config={{

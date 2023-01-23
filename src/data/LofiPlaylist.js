@@ -3,6 +3,10 @@ import LofiTwo from "../assets/lofi_images/LofiTwo.gif";
 import LofiThree from "../assets/lofi_images/LofiThree.gif";
 import LofiFour from "../assets/lofi_images/LofiFour.gif";
 import LofiFive from "../assets/lofi_images/LofiFive.gif";
+import LofiSix from "../assets/lofi_images/LofiSix.gif";
+import LofiSeven from "../assets/lofi_images/LofiSeven.jpg";
+import LofiEight from "../assets/lofi_images/LofiEight.gif";
+import LofiNine from "../assets/lofi_images/LofiNine.gif"
 
 export const LofiPlaylist = [
   {
@@ -30,4 +34,20 @@ export const LofiPlaylist = [
     youtube_url: "https://www.youtube.com/watch?v=3k42V5tkD6s",
     lofi_image: LofiFive,
   },
+  {
+    name: "🎮VIDEO GAME RADIO [24/7 Video Game Music Live Stream]👾",
+    youtube_url: "https://www.youtube.com/watch?v=kxa_vQ88OWA",
+    lofi_image: LofiSix,
+  },
+
+  {
+    name: "CHILL RADIO 24/7 ",
+    youtube_url: "https://www.youtube.com/watch?v=ceqgwo7U28Y",
+    lofi_image: LofiEight,
+  },
+  {
+    name: "jazz/lofi hip hop radio🌱chill beats to relax/study to [LIVE 24/7]",
+    youtube_url: "https://www.youtube.com/watch?v=kgx4WGK0oNU",
+    lofi_image: LofiNine,
+  }
 ];

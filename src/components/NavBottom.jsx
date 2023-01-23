@@ -1,4 +1,8 @@
-import { BsPlayFill, BsPauseFill, BsFullscreen } from "react-icons/bs";
+import {
+  BsPlayFill,
+  BsPauseFill,
+  BsBook,
+} from "react-icons/bs";
 import { RiPlayListFill } from "react-icons/ri";
 import { MdTimer } from "react-icons/md";
 
@@ -14,8 +18,8 @@ const NavBottom = ({
   }
 
   return (
-    <div className="w-screen h-[10vh] bottom-0 left-0 absolute flex flex-row justify-between items-center gap-2 px-10 text-white">
-      <div className="w-full h-fit flex filter backdrop-blur-sm text-3xl flex-col">
+    <div className="w-screen h-[10vh] bottom-0 left-0 absolute flex flex-row justify-between items-center gap-2 px-10 text-white z-40">
+      <div className="w-full h-fit flex text-3xl flex-col">
         <div className="flex flex-row gap-4">
           <button className="text-white rounded-full" onClick={handleStart}>
             <i>{isPlaying ? <BsPauseFill /> : <BsPlayFill />}</i>
@@ -37,16 +41,21 @@ const NavBottom = ({
             />
           </label>
         </div>
-        <p className="font-mono animate-pulse cursor-pointer text-lg" onClick={handlePlaylist}>
-          {lofiInfo?.name ||
-            "Japanese Lofi Radio 24/7 🔴 Aesthetic Lofi Hip Hop Music"}
+        <p
+          className="font-mono animate-pulse cursor-pointer text-lg flex items-center"
+          onClick={handlePlaylist}
+        >
+          {lofiInfo?.name || "lofi hip hop radio - beats to relax/study to"}
         </p>
       </div>
-      <div className="flex flex-row gap-2 items-center">
+      {/* <div className="flex flex-row gap-3 items-center opacity-50">
         <i className="font-mono text-4xl cursor-pointer">
           <MdTimer />
         </i>
-      </div>
+        <i className="font-mono text-4xl cursor-pointer">
+          <BsBook />
+        </i>
+      </div> */}
     </div>
   );
 };

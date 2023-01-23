@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import { LofiPlaylist } from "../data/LofiPlaylist";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
 const Modal = ({ setLofiInfo, setIsModal }) => {
@@ -7,19 +7,26 @@ const Modal = ({ setLofiInfo, setIsModal }) => {
   }
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       onClick={closeModal}
-      className="bg-slate-900/50 backdrop-hue-rotate-90 w-screen h-screen absolute inset-0 z-50 grid xl:grid-cols-3 md:grid-cols-2 justify-center gap-10 items-start p-10"
+      className="bg-slate-900/50 backdrop-hue-rotate-90 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50"
     >
-      {LofiPlaylist.map(({ name, youtube_url, lofi_image }) => (
-        <PlaylistCard
-          name={name}
-          youtube_url={youtube_url}
-          lofi_image={lofi_image}
-          setLofiInfo={setLofiInfo}
-        />
-      ))}
-    </div>
+      <div className="grid grid-cols-3 justify-center gap-10 items-start h-[95vh] m-10">
+        {LofiPlaylist.map(({ name, youtube_url, lofi_image }, idx) => (
+          <PlaylistCard
+            key={idx}
+            name={name}
+            youtube_url={youtube_url}
+            lofi_image={lofi_image}
+            setLofiInfo={setLofiInfo}
+          />
+        ))}
+      </div>
+    </motion.div>
   );
 };
 
