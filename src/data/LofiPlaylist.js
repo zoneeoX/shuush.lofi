@@ -6,7 +6,9 @@ import LofiFive from "../assets/lofi_images/LofiFive.gif";
 import LofiSix from "../assets/lofi_images/LofiSix.gif";
 import LofiSeven from "../assets/lofi_images/LofiSeven.jpg";
 import LofiEight from "../assets/lofi_images/LofiEight.gif";
-import LofiNine from "../assets/lofi_images/LofiNine.gif"
+import LofiNine from "../assets/lofi_images/LofiNine.gif";
+import LofiTen from "../assets/lofi_images/LofiTen.gif";
+import LofiEleven from "../assets/lofi_images/LofiEleven.gif";
 
 export const LofiPlaylist = [
   {
@@ -49,5 +51,15 @@ export const LofiPlaylist = [
     name: "jazz/lofi hip hop radio🌱chill beats to relax/study to [LIVE 24/7]",
     youtube_url: "https://www.youtube.com/watch?v=kgx4WGK0oNU",
     lofi_image: LofiNine,
-  }
+  },
+  {
+    name: "Smooth Jazz Music 24/7 - Rainy Jazz Music for Studying, Work and Relaxation",
+    youtube_url: "https://www.youtube.com/watch?v=mtcPfhRatL4",
+    lofi_image: LofiTen,
+  },
+  {
+    name: "Rainy Jazz: Relaxing Jazz & Bossa Nova Music Radio - 24/7 Chill Out Piano & Guitar Music",
+    youtube_url: "https://www.youtube.com/watch?v=DSGyEsJ17cI",
+    lofi_image: LofiEleven,
+  },
 ];

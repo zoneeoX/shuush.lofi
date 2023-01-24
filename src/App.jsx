@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Overlay from "./assets/lofi_overlay/overlay.gif";
 import lofiBackground from "./assets/images/yes.png";
 import LofiThree from "./assets/lofi_images/LofiThree.gif";
@@ -7,16 +7,29 @@ import NavBottom from "./components/NavBottom";
 import Modal from "./components/Modal";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import Pomodoro from "./components/Pomodoro/Pomodoro";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [playerVolume, setPlayerVolume] = useState(0.5);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const [isPomodoro, setIsPomodoro] = useState(false);
+  const [isPomodoroSettings, setIsPomodoroSettings] = useState(false);
+  const { isFinished, isPause } = useSelector((store) => store.post);
+
   const [lofiInfo, setLofiInfo] = useState({
     name: "",
     youtube_url: "",
     lofi_image: "",
   });
+  const [pomodoro, setPomodoro] = useState({
+    duration: 25,
+    break: 5,
+    session: 1,
+  });
+
+  // TODO PLEASE FIX THE INTERVAL ZONE FUTURE IM COUNTING ON YOU
 
   const handleStart = useCallback(() => {
     setIsPlaying((prevState) => !prevState);
@@ -25,6 +38,18 @@ function App() {
   const handlePlaylist = useCallback(() => {
     setIsModal((prevState) => !prevState);
   });
+
+  const handleIsPomodoro = useCallback(() => {
+    setIsPomodoro((prevState) => !prevState);
+  });
+
+  const handlePomdoroSettings = useCallback(() => {
+    setIsPomodoroSettings((prevState) => !prevState);
+  });
+
+  useEffect(() => {
+    setIsPomodoro(false);
+  }, [isFinished]);
 
   return (
     <>
@@ -35,6 +60,19 @@ function App() {
           ""
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {isPomodoro ? (
+          <Pomodoro isPomodoro={isPomodoro} pomodoro={pomodoro} />
+        ) : (
+          ""
+        )}
+      </AnimatePresence>
+
+      {/* <AnimatePresence>
+        {isPomodoroSettings ? <PomodoroSettings /> : ""}
+      </AnimatePresence> */}
+
       <div className="w-screen h-screen flex justify-center items-center">
         <img
           src={lofiInfo.lofi_image || LofiThree}
@@ -69,6 +107,13 @@ function App() {
           setPlayerVolume={setPlayerVolume}
           handlePlaylist={handlePlaylist}
           lofiInfo={lofiInfo}
+          handlePomdoroSettings={handlePomdoroSettings}
+          isPomodoroSettings={isPomodoroSettings}
+          setPomodoro={setPomodoro}
+          setIsPomodoro={setIsPomodoro}
+          isPomodoro={isPomodoro}
+          setIsPomodoroSettings={setIsPomodoroSettings}
+          pomodoro={pomodoro}
         />
       </div>
     </>

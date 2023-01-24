@@ -15,7 +15,7 @@ const Modal = ({ setLofiInfo, setIsModal }) => {
       onClick={closeModal}
       className="bg-slate-900/50 backdrop-hue-rotate-90 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50"
     >
-      <div className="grid grid-cols-3 justify-center gap-10 items-start h-[95vh] m-10">
+      <div className="grid grid-cols-3 justify-center gap-10 items-start h-[130vh] p-10">
         {LofiPlaylist.map(({ name, youtube_url, lofi_image }, idx) => (
           <PlaylistCard
             key={idx}
