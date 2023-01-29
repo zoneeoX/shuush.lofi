@@ -2,11 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import alarm from "../../assets/audio/alarm.mp3";
 import { useSelector } from "react-redux";
-import { finishedPomodoro } from "../../features/PostPomodoro";
 
 const Pomodoro = ({ pomodoro }) => {
-  const [pause, setPause] = useState(false);
-  const { isFinished, isPause } = useSelector((store) => store.post);
+  const { isPause } = useSelector((store) => store.post);
 
   //store jika false jngn run if true run
 
@@ -35,7 +33,7 @@ const Pomodoro = ({ pomodoro }) => {
               setMinutes((prevState) => prevState - 1);
             } else {
               let minutes = displayMessage
-                ? pomodoro.duration
+                ? pomodoro.duration - 1
                 : pomodoro.break - 1;
               new Audio(alarm).play();
               let seconds = 59;

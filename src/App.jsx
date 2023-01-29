@@ -1,12 +1,10 @@
 import ReactPlayer from "react-player";
 import { useState, useCallback, useEffect } from "react";
 import Overlay from "./assets/lofi_overlay/overlay.gif";
-import lofiBackground from "./assets/images/yes.png";
 import LofiThree from "./assets/lofi_images/LofiThree.gif";
 import NavBottom from "./components/NavBottom";
 import Modal from "./components/Modal";
 import { AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
 import Pomodoro from "./components/Pomodoro/Pomodoro";
 import { useSelector } from "react-redux";
 
@@ -16,7 +14,7 @@ function App() {
   const [isModal, setIsModal] = useState(false);
   const [isPomodoro, setIsPomodoro] = useState(false);
   const [isPomodoroSettings, setIsPomodoroSettings] = useState(false);
-  const { isFinished, isPause } = useSelector((store) => store.post);
+  const { isFinished } = useSelector((store) => store.post);
 
   const [lofiInfo, setLofiInfo] = useState({
     name: "",

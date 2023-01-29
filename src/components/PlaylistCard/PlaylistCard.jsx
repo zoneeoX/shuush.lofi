@@ -15,11 +15,11 @@ const PlaylistCard = ({ name, youtube_url, lofi_image, setLofiInfo }) => {
 
   return (
     <div className="text-white cursor-pointer" onClick={handleLofi}>
-      <div className="relative">
+      <div className="relative h-[34vh]">
         <img
           src={lofi_image}
           alt="lofi placeholder"
-          className="w-full object-cover object-center h-[30vh] transition-all duration-200 absolute brightness-50 hover:brightness-100"
+          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100"
         />
         <div className="flex flex-row relative items-center px-2">
           <a href={youtube_url} target="_blank">

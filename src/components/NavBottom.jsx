@@ -1,7 +1,6 @@
-import { BsPlayFill, BsPauseFill, BsBook } from "react-icons/bs";
+import { BsPlayFill, BsPauseFill } from "react-icons/bs";
 import { RiPlayListFill } from "react-icons/ri";
 import { MdTimer } from "react-icons/md";
-import { AiOutlineCheck } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +22,7 @@ const NavBottom = ({
   isPomodoro,
 }) => {
   const dispatch = useDispatch();
-  const { isFinished, isPause } = useSelector((store) => store.post);
+  const { isPause } = useSelector((store) => store.post);
 
   const [ready, setReady] = useState("");
 
