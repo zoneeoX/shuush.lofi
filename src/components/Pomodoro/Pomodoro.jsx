@@ -2,13 +2,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import alarm from "../../assets/audio/alarm.mp3";
 import { useSelector } from "react-redux";
+import { clearInterval, setInterval } from "worker-timers";
+import { Howl, Howler } from "howler";
 
-const Pomodoro = ({ pomodoro }) => {
+const Pomodoro = ({ pomodoro, isPomodoro }) => {
   const { isPause } = useSelector((store) => store.post);
 
   //store jika false jngn run if true run
 
-  const [minutes, setMinutes] = useState(pomodoro.duration - 1);
+  const [minutes, setMinutes] = useState(pomodoro?.duration - 1);
   const [seconds, setSeconds] = useState(59);
   const [displayMessage, setDisplayMessage] = useState(false);
 
@@ -21,8 +23,18 @@ const Pomodoro = ({ pomodoro }) => {
   //   }
   // }
 
+  var alarmed = new Howl({
+    src: alarm,
+  });
+
+  function stop() {
+    clearInterval(interval);
+  }
+
   let interval = null;
   useEffect(() => {
+    isPause && stop();
+
     !isPause
       ? (interval = setInterval(() => {
           clearInterval(interval);
@@ -35,7 +47,8 @@ const Pomodoro = ({ pomodoro }) => {
               let minutes = displayMessage
                 ? pomodoro.duration - 1
                 : pomodoro.break - 1;
-              new Audio(alarm).play();
+              alarmed.play();
+
               let seconds = 59;
 
               setSeconds(seconds);
@@ -46,7 +59,7 @@ const Pomodoro = ({ pomodoro }) => {
             setSeconds((prevState) => prevState - 1);
           }
         }, 1000))
-      : clearInterval(interval);
+      : stop();
   }, [seconds, isPause]);
 
   const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -80,16 +93,25 @@ const Pomodoro = ({ pomodoro }) => {
         )}
       </AnimatePresence>
       <div className="text-center">
-        <h1
-          className={`${
-            isPause ? "text-red-400" : "text-[#FFFDD0]"
-          } font-mono text-5xl`}
-        >
-          {timerMinutes}:{timerSeconds}
-        </h1>
-        <span className="text-3xl font-mono text-red-400">
-          {isPause && "Timer has been paused"}
-        </span>
+        <AnimatePresence>
+          {!isPause  ? (
+            <motion.h1
+   
+              className={`${
+                isPause ? "text-red-400" : "text-[#FFFDD0]"
+              } font-mono text-5xl`}
+            >
+              {timerMinutes}:{timerSeconds}
+            </motion.h1>
+          ) : (
+            <motion.span
+             
+              className="text-4xl font-mono text-red-400"
+            >
+              {isPause && "Timer has been paused"}
+            </motion.span>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

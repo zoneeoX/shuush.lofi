@@ -54,7 +54,7 @@ const NavBottom = ({
     dispatch(finishedPomodoro());
   }
 
-  const debounceHandlePause = debounce(handlePause, 500);
+  const debounceHandlePause = debounce(handlePause, 300);
 
   return (
     <div className="w-screen h-[10vh] bottom-0 left-0 absolute flex flex-row justify-between items-center gap-2 px-10 text-white z-40">
