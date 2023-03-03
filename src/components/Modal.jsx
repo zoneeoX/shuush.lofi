@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { LofiPlaylist } from "../data/LofiPlaylist";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
-const Modal = ({ setLofiInfo, setIsModal }) => {
+const Modal = ({ setLofiInfo, setIsModal, lofiInfo }) => {
   function closeModal() {
     setIsModal(false);
   }
@@ -23,6 +23,7 @@ const Modal = ({ setLofiInfo, setIsModal }) => {
             youtube_url={youtube_url}
             lofi_image={lofi_image}
             setLofiInfo={setLofiInfo}
+            lofiInfo={lofiInfo}
           />
         ))}
       </div>

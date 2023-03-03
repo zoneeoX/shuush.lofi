@@ -2,13 +2,26 @@ import React from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { TabTitle } from "../TabTitle/TabTitle";
 
-const PlaylistCard = ({ name, youtube_url, lofi_image, setLofiInfo }) => {
+const PlaylistCard = ({
+  name,
+  youtube_url,
+  lofi_image,
+  setLofiInfo,
+  lofiInfo,
+}) => {
   function handleLofi() {
-    setLofiInfo({
-      name,
-      youtube_url,
-      lofi_image,
-    });
+    // setLofiInfo({
+    //   name,
+    //   youtube_url,
+    //   lofi_image,
+    // });
+
+    setLofiInfo((lofiInfo) => ({
+      ...lofiInfo,
+      name: name,
+      youtube_url: youtube_url,
+      lofi_image: lofi_image,
+    }));
 
     TabTitle("shuush.lofi 🎧 " + name);
   }

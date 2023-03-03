@@ -20,6 +20,7 @@ function App() {
     name: "",
     youtube_url: "",
     lofi_image: "",
+    custom_image: "",
   });
   const [pomodoro, setPomodoro] = useState({
     duration: 25,
@@ -53,7 +54,7 @@ function App() {
     <>
       <AnimatePresence>
         {isModal ? (
-          <Modal setLofiInfo={setLofiInfo} setIsModal={setIsModal} />
+          <Modal setLofiInfo={setLofiInfo} setIsModal={setIsModal} lofiInfo={lofiInfo} />
         ) : (
           ""
         )}
@@ -73,7 +74,7 @@ function App() {
 
       <div className="w-screen h-screen flex justify-center items-center">
         <img
-          src={lofiInfo.lofi_image || LofiThree}
+          src={lofiInfo.custom_image || lofiInfo.lofi_image || LofiThree}
           alt="background for lofi"
           className="w-screen h-screen absolute object-cover object-center brightness-50"
           onClick={handleStart}
@@ -112,6 +113,7 @@ function App() {
           isPomodoro={isPomodoro}
           setIsPomodoroSettings={setIsPomodoroSettings}
           pomodoro={pomodoro}
+          setLofiInfo={setLofiInfo}
         />
       </div>
     </>

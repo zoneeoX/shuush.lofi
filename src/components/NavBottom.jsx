@@ -2,7 +2,7 @@ import { BsPlayFill, BsPauseFill } from "react-icons/bs";
 import { RiPlayListFill } from "react-icons/ri";
 import { MdTimer } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pausePomodoro, finishedPomodoro } from "../features/PostPomodoro";
 import debounce from "lodash.debounce";
@@ -20,11 +20,13 @@ const NavBottom = ({
   setIsPomodoro,
   setIsPomodoroSettings,
   isPomodoro,
+  setLofiInfo,
 }) => {
   const dispatch = useDispatch();
   const { isPause } = useSelector((store) => store.post);
 
   const [ready, setReady] = useState("");
+  const [customImage, setCustomImage] = useState("");
 
   function setVolume(e) {
     setPlayerVolume(e.currentTarget.value);
@@ -54,6 +56,32 @@ const NavBottom = ({
     dispatch(finishedPomodoro());
   }
 
+  function handleChangeBackground(e) {
+    setCustomImage(e.target.value);
+  }
+
+  function handleDeleteValue() {
+    setCustomImage("");
+  }
+
+  function setCustomBackground() {
+    setLofiInfo((lofiInfo) => ({ ...lofiInfo, custom_image: customImage }));
+  }
+
+  function handleDefaultBackground() {
+    setLofiInfo((lofiInfo) => ({ ...lofiInfo, custom_image: "" }));
+    setCustomImage("");
+  }
+
+  useEffect(() => {
+    handleChangeBackground;
+  }, [lofiInfo.custom_image, customImage]);
+
+  // useEffect(() => {
+  //   setLofiInfo((lofiInfo) => ({ ...lofiInfo, custom_image: customImage }));
+  //   console.log(lofiInfo)
+  // }, [customImage]);
+
   const debounceHandlePause = debounce(handlePause, 300);
 
   return (
@@ -78,6 +106,35 @@ const NavBottom = ({
                   className="bg-slate-900/50 filter backdrop-blur-md w-80 min-h-40 absolute bottom-10 rounded text-lg font-mono p-4 flex flex-col gap-2"
                   onMouseLeave={exit}
                 >
+                  <fieldset className="w-fit h-fit text-center mb-4 border-white/30 border-b-[1px]">
+                    <legend className="opacity-50">
+                      Set custom background! (url)
+                    </legend>
+                    <label>
+                      <input
+                        type="url"
+                        className="w-full focus:outline-none active:outline-none outline-none bg-transparent border-[1px] border-white"
+                        value={customImage}
+                        onClick={handleDeleteValue}
+                        onChange={handleChangeBackground}
+                      />
+                      <div className="mb-10 mt-10 flex flex-col">
+                        <button
+                          onClick={setCustomBackground}
+                          className="hover:scale-110 transition-all duration-150 "
+                        >
+                          Set background
+                        </button>
+
+                        <button
+                          onClick={handleDefaultBackground}
+                          className="hover:scale-110 transition-all duration-150 opacity-50"
+                        >
+                          Default background
+                        </button>
+                      </div>
+                    </label>
+                  </fieldset>
                   {!isPomodoro ? (
                     <>
                       <fieldset className="flex flex-row gap-4">
