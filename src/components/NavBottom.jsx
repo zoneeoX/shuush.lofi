@@ -21,6 +21,7 @@ const NavBottom = ({
   setIsPomodoroSettings,
   isPomodoro,
   setLofiInfo,
+  playerVolume
 }) => {
   const dispatch = useDispatch();
   const { isPause } = useSelector((store) => store.post);
@@ -103,7 +104,7 @@ const NavBottom = ({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="bg-slate-900/50 filter backdrop-blur-md w-80 min-h-40 absolute bottom-10 rounded text-lg font-mono p-4 flex flex-col gap-2"
+                  className="bg-slate-900/50 filter backdrop-blur-md w-80 min-h-40 absolute bottom-10 rounded text-lg font-mono p-4 flex flex-col gap-2 -right-48 sm:left-0"
                   onMouseLeave={exit}
                 >
                   <fieldset className="w-fit h-fit text-center mb-4 border-white/30 border-b-[1px]">
@@ -266,20 +267,21 @@ const NavBottom = ({
               <BsBook />
             </i>
           </button> */}
-          <label htmlFor="" className="flex justify-start items-center">
+          <label htmlFor="" className="flex items-center gap-4 group">
             <input
               type="range"
-              className="slider w-96 bg-slate-800"
+              className="sm:w-96 xs:w-40 bg-slate-800 focus:bg-slate-800 active:bg-slate-800"
               min={0}
               max={1}
               step={0.001}
               defaultValue={0.5}
               onChange={(e) => setVolume(e)}
             />
+            <p className="text-sm font-mono bg-slate-900 w-10 text-center h-10 flex group-hover:opacity-100 items-center justify-center rounded-full opacity-0 transition-all duration-200">{(playerVolume * 100).toFixed(0)}%</p>
           </label>
         </div>
         <p
-          className="font-mono animate-pulse cursor-pointer text-lg flex items-center"
+          className="font-mono animate-pulse cursor-pointer sm:text-lg text-sm flex items-center"
           onClick={handlePlaylist}
         >
           {lofiInfo?.name || "lofi hip hop radio - beats to relax/study to"}

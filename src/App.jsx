@@ -114,6 +114,7 @@ function App() {
           setIsPomodoroSettings={setIsPomodoroSettings}
           pomodoro={pomodoro}
           setLofiInfo={setLofiInfo}
+          playerVolume={playerVolume}
         />
       </div>
     </>
