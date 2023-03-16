@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pausePomodoro, finishedPomodoro } from "../features/PostPomodoro";
+import { GiBatteryPackAlt } from 'react-icons/gi'
 import debounce from "lodash.debounce";
 
 const NavBottom = ({
@@ -21,7 +22,8 @@ const NavBottom = ({
   setIsPomodoroSettings,
   isPomodoro,
   setLofiInfo,
-  playerVolume
+  playerVolume,
+  setIsOverlay
 }) => {
   const dispatch = useDispatch();
   const { isPause } = useSelector((store) => store.post);
@@ -74,6 +76,10 @@ const NavBottom = ({
     setCustomImage("");
   }
 
+  function handleOverlay() {
+    setIsOverlay((prevState) => !prevState)
+  }
+
   useEffect(() => {
     handleChangeBackground;
   }, [lofiInfo.custom_image, customImage]);
@@ -88,7 +94,7 @@ const NavBottom = ({
   return (
     <div className="w-screen h-[10vh] bottom-0 left-0 absolute flex flex-row justify-between items-center gap-2 px-10 text-white z-40">
       <div className="w-full h-fit flex text-3xl flex-col">
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 items-center">
           <button className="text-white rounded-full" onClick={handleStart}>
             <i>{isPlaying ? <BsPauseFill /> : <BsPlayFill />}</i>
           </button>
@@ -97,6 +103,11 @@ const NavBottom = ({
               <RiPlayListFill />
             </i>
           </button>
+          <button className="text-white rounded-full">
+            <i className="text-2xl" onClick={handleOverlay}>
+              <GiBatteryPackAlt />
+            </i>
+          </button> 
           <div className="relative">
             <AnimatePresence>
               {isPomodoroSettings ? (

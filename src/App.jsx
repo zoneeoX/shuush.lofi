@@ -7,7 +7,7 @@ import Modal from "./components/Modal";
 import { AnimatePresence } from "framer-motion";
 import Pomodoro from "./components/Pomodoro/Pomodoro";
 import { useSelector } from "react-redux";
-
+import { LofiPlaylist } from "./data/LofiPlaylist";
 function App() {
   const [playerVolume, setPlayerVolume] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -15,6 +15,7 @@ function App() {
   const [isPomodoro, setIsPomodoro] = useState(false);
   const [isPomodoroSettings, setIsPomodoroSettings] = useState(false);
   const { isFinished } = useSelector((store) => store.post);
+  const [isOverlay, setIsOverlay] = useState(true);
 
   const [lofiInfo, setLofiInfo] = useState({
     name: "",
@@ -47,6 +48,15 @@ function App() {
   });
 
   useEffect(() => {
+    var data = localStorage.getItem("lofiData");
+    if (data) {
+      return;
+    } else {
+      localStorage.setItem("lofiData", JSON.stringify(LofiPlaylist));
+    }
+  }, []);
+
+  useEffect(() => {
     setIsPomodoro(false);
   }, [isFinished]);
 
@@ -54,7 +64,11 @@ function App() {
     <>
       <AnimatePresence>
         {isModal ? (
-          <Modal setLofiInfo={setLofiInfo} setIsModal={setIsModal} lofiInfo={lofiInfo} />
+          <Modal
+            setLofiInfo={setLofiInfo}
+            setIsModal={setIsModal}
+            lofiInfo={lofiInfo}
+          />
         ) : (
           ""
         )}
@@ -79,10 +93,15 @@ function App() {
           className="w-screen h-screen absolute object-cover object-center brightness-50"
           onClick={handleStart}
         />
-        <img
-          src={Overlay}
-          className="w-screen h-screen object-bottom object-cover z-40 opacity-30"
-        />
+
+        {isOverlay ? (
+          <img
+            src={Overlay}
+            className="w-screen h-screen object-bottom object-cover z-40 opacity-30"
+          />
+        ) : (
+          ""
+        )}
 
         <div className="-z-50 invisible absolute">
           <ReactPlayer
@@ -115,6 +134,7 @@ function App() {
           pomodoro={pomodoro}
           setLofiInfo={setLofiInfo}
           playerVolume={playerVolume}
+          setIsOverlay={setIsOverlay}
         />
       </div>
     </>
