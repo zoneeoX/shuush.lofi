@@ -68,6 +68,8 @@ function App() {
             setLofiInfo={setLofiInfo}
             setIsModal={setIsModal}
             lofiInfo={lofiInfo}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
           />
         ) : (
           ""
