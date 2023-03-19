@@ -250,9 +250,7 @@ const NavBottom = ({
                             @zoneeoX
                           </a>{" "}
                           <span className="opacity-50">
-                            was here 1/24/2023 and still probably is because i
-                            have a big upcoming kind of like "SAT" test coming
-                            up in 3 months.
+                            Hey i hope you are enjoying this little project and i wish you a very good day :')
                           </span>
                         </p>
                       </div>

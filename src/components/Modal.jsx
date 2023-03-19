@@ -55,7 +55,7 @@ const Modal = ({
     setSavedLofi((oldData) => [...oldData, newLofi]);
     var storedData = JSON.parse(localStorage.getItem("lofiData"));
     localStorage.setItem("lofiData", JSON.stringify([...storedData, newLofi]));
-    setSubModal(false)
+    setSubModal(false);
 
     setNewLofi((prevState) => ({
       ...prevState,
@@ -74,21 +74,23 @@ const Modal = ({
       className="bg-slate-900/50 backdrop-hue-rotate-90 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50 filter backdrop-blur-md overflow-x-hidden"
     >
       <div className="w-screen h-fit bg-gradient-to-b from-slate-700/100 to-transparent text-white font-mono p-2">
-        <div className="gap-2">
-          <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center opacity">
-            You can also add your favorite songs / stream or even playlist!
-          </p>
-          <button
-            className="bg-slate-400/30 p-2 rounded-full z-50"
-            onClick={handleSubModal}
-          >
-            Add Songs Here
-          </button>
+        <div className="gap-2 flex">
+          <div className="flex flex-col gap-2 w-fit border-b-[1px] border-white/50 pb-6 p-2">
+            <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center">
+              You can also add your favorite songs / stream or even playlist!
+            </p>
+            <button
+              className="bg-slate-700/80 text-sm p-2 z-50 hover:bg-slate-600 border-white/50 border-[1px] w-72"
+              onClick={handleSubModal}
+            >
+              Add Songs Here
+            </button>
+          </div>
           {subModal && (
-            <div className="flex flex-col items-center justify-center absolute z-50 w-screen h-screen bg-black/50 top-0 left-0">
+            <div className="flex flex-col items-center justify-center fixed z-50 w-screen h-screen bg-black/70 top-0 left-0">
               <div className="bg-white w-[30vw] h-[6vh] bg-slate-700/40 rounded-t flex justify-end items-center p-2">
                 <i
-                  className="text-red-400 cursor-pointer hover:scale-125 transition-all duration-200 text-2xl z-10"
+                  className="text-xl text-white rounded-full bg-red-700 z-50 hover:scale-110 p-1 cursor-pointer"
                   onClick={closeSubModal}
                 >
                   <AiOutlineClose />
