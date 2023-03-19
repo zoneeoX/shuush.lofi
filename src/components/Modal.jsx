@@ -71,7 +71,7 @@ const Modal = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-slate-900/50 backdrop-hue-rotate-90 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50 filter backdrop-blur-md overflow-x-hidden"
+      className="bg-slate-900/50 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50 filter overflow-x-hidden"
     >
       <div className="w-screen h-fit bg-gradient-to-b from-slate-700/100 to-transparent text-white font-mono p-2">
         <div className="gap-2 flex">
@@ -87,7 +87,7 @@ const Modal = ({
             </button>
           </div>
           {subModal && (
-            <div className="flex flex-col items-center justify-center fixed z-50 w-screen h-screen bg-black/70 top-0 left-0">
+            <div className="flex flex-col items-center justify-center fixed z-50 overflow-y-hidden w-screen h-screen bg-black/70 top-0 left-0">
               <div className="bg-white w-[30vw] h-[6vh] bg-slate-700/40 rounded-t flex justify-end items-center p-2">
                 <i
                   className="text-xl text-white rounded-full bg-red-700 z-50 hover:scale-110 p-1 cursor-pointer"
