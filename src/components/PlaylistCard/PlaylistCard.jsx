@@ -2,6 +2,8 @@ import React from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { TabTitle } from "../TabTitle/TabTitle";
 import { AiOutlineClose } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PlaylistCard = ({
   name,
@@ -25,23 +27,29 @@ const PlaylistCard = ({
       lofi_image: lofi_image,
     }));
 
+    closeModal();
+
     TabTitle("shuush.lofi 🎧 " + name);
   }
 
   function handleDelete() {
-    setSavedLofi(oldData => oldData.filter((element, index) => index !== id))
+    setSavedLofi((oldData) => oldData.filter((element, index) => index !== id));
     var filteredArray = savedLofi.filter((element, index) => index !== id);
     localStorage.setItem("lofiData", JSON.stringify(filteredArray));
+    toast.success("Deleted", {
+      theme: "dark",
+    });
   }
 
   return (
-    <div className="text-white cursor-pointer" onClick={handleLofi}>
+    <div className="text-white cursor-pointer">
+      <ToastContainer />
       <div className="relative h-[34vh]">
         <img
           src={lofi_image}
-          onClick={closeModal}
+          onClick={handleLofi}
           alt="lofi placeholder"
-          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100"
+          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100 z-30"
         />
         <div className="flex flex-row justify-between items-center px-2">
           <div className="flex flex-row relative items-center px-2">

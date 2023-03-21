@@ -3,12 +3,16 @@ import { LofiPlaylist } from "../data/LofiPlaylist";
 import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Modal = ({
   setLofiInfo,
   setIsModal,
   lofiInfo,
   isPlaying,
   setIsPlaying,
+  isModal,
 }) => {
   const [lofiData, setLofiData] = useState(LofiPlaylist);
   const [savedLofi, setSavedLofi] = useState([]);
@@ -18,6 +22,7 @@ const Modal = ({
     lofi_image: "",
   });
   const [subModal, setSubModal] = useState(false);
+  const [collapsed, setCollapsed] = useState(Boolean);
 
   useEffect(() => {
     var storedData = JSON.parse(localStorage.getItem("lofiData"));
@@ -49,6 +54,9 @@ const Modal = ({
       newLofi.youtube_url === "" ||
       newLofi.lofi_image === ""
     ) {
+      toast.error('Please enter all the value.', {
+        theme: 'dark'
+      })
       throw new Error("Please enter a value");
     }
 
@@ -56,6 +64,10 @@ const Modal = ({
     var storedData = JSON.parse(localStorage.getItem("lofiData"));
     localStorage.setItem("lofiData", JSON.stringify([...storedData, newLofi]));
     setSubModal(false);
+
+    toast.success("Enjoy~", {
+      theme: 'dark'
+    })
 
     setNewLofi((prevState) => ({
       ...prevState,
@@ -65,6 +77,24 @@ const Modal = ({
     }));
   }
 
+  useEffect(() => {
+    if (collapsed) {
+      return;
+    }
+
+    function handleKeyUp(event) {
+      switch (event.key) {
+        case "Escape":
+          setCollapsed(true);
+          closeModal();
+          break;
+      }
+    }
+
+    window.addEventListener("keyup", handleKeyUp);
+    return () => window.removeEventListener("keyup", handleKeyUp);
+  }, [collapsed]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -73,6 +103,7 @@ const Modal = ({
       transition={{ duration: 0.3 }}
       className="bg-slate-900/50 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50 filter overflow-x-hidden"
     >
+      <ToastContainer />
       <div className="w-screen h-fit bg-gradient-to-b from-slate-700/100 to-transparent text-white font-mono p-2">
         <div className="gap-2 flex">
           <div className="flex flex-col gap-2 w-fit border-b-[1px] border-white/50 pb-6 p-2">

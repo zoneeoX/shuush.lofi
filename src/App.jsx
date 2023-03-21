@@ -67,6 +67,7 @@ function App() {
           <Modal
             setLofiInfo={setLofiInfo}
             setIsModal={setIsModal}
+            isModal={isModal}
             lofiInfo={lofiInfo}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
