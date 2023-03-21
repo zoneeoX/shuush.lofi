@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { LofiPlaylist } from "../data/LofiPlaylist";
 import { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Modal = ({
   setLofiInfo,
@@ -54,9 +54,9 @@ const Modal = ({
       newLofi.youtube_url === "" ||
       newLofi.lofi_image === ""
     ) {
-      toast.error('Please enter all the value.', {
-        theme: 'dark'
-      })
+      toast.error("Please enter all the value.", {
+        theme: "dark",
+      });
       throw new Error("Please enter a value");
     }
 
@@ -66,8 +66,8 @@ const Modal = ({
     setSubModal(false);
 
     toast.success("Enjoy~", {
-      theme: 'dark'
-    })
+      theme: "dark",
+    });
 
     setNewLofi((prevState) => ({
       ...prevState,
@@ -104,18 +104,22 @@ const Modal = ({
       className="bg-slate-900/50 w-screen min-h-screen max-h-full overflow-y-scroll absolute inset-0 z-50 filter overflow-x-hidden"
     >
       <ToastContainer />
-      <div className="w-screen h-fit bg-gradient-to-b from-slate-700/100 to-transparent text-white font-mono p-2">
-        <div className="gap-2 flex">
-          <div className="flex flex-col gap-2 w-fit border-b-[1px] border-white/50 pb-6 p-2">
-            <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center">
-              You can also add your favorite songs / stream or even playlist!
-            </p>
-            <button
-              className="bg-slate-700/80 text-sm p-2 z-50 hover:bg-slate-600 border-white/50 border-[1px] w-72"
-              onClick={handleSubModal}
-            >
-              Add Songs Here
-            </button>
+      <div className="w-screen h-fit bg-gradient-to-b from-slate-900/100 to-transparent text-white font-mono">
+        <div className="fixed bottom-0 w-screen z-30 flex justify-center items-center bg-gradient-to-t from-bg-slate-700/40 to-transparent">
+          <div className="gap-2 flex">
+            <div className="flex flex-col gap-2 w-fit border-b-[1px] border-white/50 pb-6 p-2">
+              <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center text-center opacity-50">
+                You can also add your favorite songs / stream or even playlist!
+              </p>
+              <button
+                className="bg-slate-700/50 text-sm p-2 z-50 hover:bg-slate-700 border-white/50 border-[1px] rounded-full w-fit m-auto"
+                onClick={handleSubModal}
+              >
+                <i className="text-2xl">
+                  <AiOutlinePlus />
+                </i>
+              </button>
+            </div>
           </div>
           {subModal && (
             <div className="flex flex-col items-center justify-center fixed z-50 overflow-y-hidden w-screen h-screen bg-black/70 top-0 left-0">

@@ -61,7 +61,7 @@ const PlaylistCard = ({
             <h1 className="w-[20vw] truncate p-2 font-mono">{name}</h1>
           </div>
           <i
-            className="text-xl text-white rounded-full bg-red-700 hover:scale-110 p-1 z-40"
+            className="text-xl text-white rounded-full bg-red-700 hover:scale-110 p-1 z-10"
             onClick={handleDelete}
           >
             <AiOutlineClose />
