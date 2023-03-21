@@ -49,9 +49,9 @@ const PlaylistCard = ({
           src={lofi_image}
           onClick={handleLofi}
           alt="lofi placeholder"
-          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100 z-30"
+          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100"
         />
-        <div className="flex flex-row justify-between items-center px-2">
+        <div className="flex flex-row justify-between items-center px-2 z-40">
           <div className="flex flex-row relative items-center px-2">
             <a href={youtube_url} target="_blank">
               <i className="text-white text-2xl">
@@ -61,7 +61,7 @@ const PlaylistCard = ({
             <h1 className="w-[20vw] truncate p-2 font-mono">{name}</h1>
           </div>
           <i
-            className="text-xl text-white rounded-full bg-red-700 z-40 hover:scale-110 p-1"
+            className="text-xl text-white rounded-full bg-red-700 hover:scale-110 p-1 z-40"
             onClick={handleDelete}
           >
             <AiOutlineClose />
