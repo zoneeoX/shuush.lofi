@@ -108,7 +108,7 @@ const Modal = ({
         <div className="fixed bottom-0 w-screen z-30 flex justify-center items-center bg-gradient-to-t from-bg-slate-700/40 to-transparent">
           <div className="gap-2 flex">
             <div className="flex flex-col gap-2 w-fit border-b-[1px] border-white/50 pb-6 p-2">
-              <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center text-center opacity-50">
+              <p className="w-fit p-1 text-sm rounded-full flex items-center justify-center text-center">
                 You can also add your favorite songs / stream or even playlist!
               </p>
               <button
@@ -123,7 +123,7 @@ const Modal = ({
           </div>
           {subModal && (
             <div className="flex flex-col items-center justify-center fixed z-50 overflow-y-hidden w-screen h-screen bg-black/70 top-0 left-0">
-              <div className="bg-white w-[30vw] h-[6vh] bg-slate-700/40 rounded-t flex justify-end items-center p-2">
+              <div className="bg-white w-[30vw] h-[6vh] bg-slate-700/80 rounded-t flex justify-end items-center p-2">
                 <i
                   className="text-xl text-white rounded-full bg-red-700 z-50 hover:scale-110 p-1 cursor-pointer"
                   onClick={closeSubModal}
@@ -131,8 +131,18 @@ const Modal = ({
                   <AiOutlineClose />
                 </i>
               </div>
-              <div className="bg-slate-800/40 h-[35vh] w-[30vw] p-4 flex flex-col gap-10">
+              <div className="bg-slate-800/80 h-[35vh] w-[30vw] p-4 flex flex-col gap-10">
                 <div className="flex flex-col gap-6">
+                  <label htmlFor="">
+                    <p className="opacity-50">Name (any)</p>
+                    <input
+                      type="text"
+                      name="name"
+                      value={newLofi.name}
+                      onChange={(e) => newLofiInput(e)}
+                      className="w-[100%] h-[1.8rem] bg-white/10 text-white rounded-lg px-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+                    />
+                  </label>
                   <label htmlFor="">
                     <p className="opacity-50">Link (url, playlist, stream)</p>
                     <input
@@ -149,16 +159,6 @@ const Modal = ({
                       type="text"
                       name="lofi_image"
                       value={newLofi.lofi_image}
-                      onChange={(e) => newLofiInput(e)}
-                      className="w-[100%] h-[1.8rem] bg-white/10 text-white rounded-lg px-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
-                    />
-                  </label>
-                  <label htmlFor="">
-                    <p className="opacity-50">Name</p>
-                    <input
-                      type="text"
-                      name="name"
-                      value={newLofi.name}
                       onChange={(e) => newLofiInput(e)}
                       className="w-[100%] h-[1.8rem] bg-white/10 text-white rounded-lg px-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
                     />

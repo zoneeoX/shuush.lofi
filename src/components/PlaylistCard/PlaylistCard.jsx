@@ -49,7 +49,7 @@ const PlaylistCard = ({
           src={lofi_image}
           onClick={handleLofi}
           alt="lofi placeholder"
-          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100"
+          className="w-full object-cover object-center h-full transition-all duration-200 absolute brightness-50 hover:brightness-100 rounded-lg"
         />
         <div className="flex flex-row justify-between items-center px-2 z-40">
           <div className="flex flex-row relative items-center px-2">
